@@ -1,50 +1,35 @@
-import React, {useState} from 'react'
+import React, {} from 'react'
 import './App.css';
 
+const applicants = [ {
+  name: 'Joe', work: 'freelance-developer',
+  blogs: '54', websites: '32',
+  hackathons: '6', location: 'morocco', id: '0',
+},
+{
+  name: 'janet', work: 'fullstack-developer', 
+  blogs: '34', websites: '12', 
+  hackathons: '8', location: 'Mozambique', id: '1',
+},
+
+];
 
 function App() {
-     const [email, setEmail] = useState('')
-     const [password, setPassword] = useState('')
-     
-
-     const handleSubmit = (e) => {
-        e.preventDefault();
-        const passwordPattern = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
-        if (!passwordPattern.test(password)) {
-             setPassword("Password requirements: 8-20 characters, 1 number, 1 letter, 1 symbol.")
-             return
-        }
-        alert('The email address and password are' + email + 'and' + password + 'respectively.')
-     }
-
   return (
-    <div className="App">
-       <form onSubmit={handleSubmit} autoComplete='off'>
-          <h1>Register</h1>
-          <div className='formInput'>
-          <label>Email</label>
-           <input
-             type='email'
-             name='email'
-             value={email}
-             placeholder='Enter your email...'
-             onChange={(e) => setEmail(e.target.value)}
-           />
-          </div>
-          <div className='formInput'>
-              <label>Password</label>
-              <input
-                 type='password'
-                 name='password'
-                 value={password}
-                 placeholder='Enter a strong password...'
-                 onChange={(e) => setPassword(e.target.value)}
-              />
-          </div>
-          <button>Submit</button>
-       </form> 
-    </div>
-  );
+    <>
+      {applicants.map(function(applicant) {
+      return (
+        <div key={applicant.id}>
+          <p>Applicant Name: {applicant.name}</p>
+          <p>Applicant location: {applicant.location}</p>
+          <p>Hackathons participated: {applicant.hackathons}</p>
+
+        </div>
+      )
+    })}
+    </>
+
+  )
 }
 
 export default App;
